@@ -1,202 +1,1171 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juan Felipe Mena Vega - CV</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <title>Juan Felipe Mena - Desarrollador Full Stack</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ESTILOS ORIGINALES MANTENIDOS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #121212;
+            --primary: #00ff88;
+            --secondary: #6366f1;
+            --accent: #f59e0b;
+            --text: #ffffff;
+            --text-muted: #a1a1aa;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-glow: linear-gradient(135deg, #00ff88 0%, #6366f1 100%);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Cursor personalizado */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Navegación */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-glow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 5%;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: float 10s infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .gradient-text {
+            background: var(--gradient-glow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+
+            0%,
+            100% {
+                filter: hue-rotate(0deg);
+            }
+
+            50% {
+                filter: hue-rotate(45deg);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .typing-effect::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            50% {
+                opacity: 1;
+            }
+
+            51%,
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--bg-dark);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 50px rgba(0, 255, 136, 0.5);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--bg-dark);
+            transform: translateY(-3px);
+        }
+
+        /* Secciones */
+        section {
+            padding: 8rem 5%;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-glow);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* Sobre mí */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+        }
+
+        .skill-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Proyectos */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border-color: var(--primary);
+        }
+
+        .project-image {
+            height: 250px;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:nth-child(2) .project-image {
+            background: var(--gradient-2);
+        }
+
+        .project-card:nth-child(3) .project-image {
+            background: var(--gradient-3);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-content p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--primary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Servicios */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-glow);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(0, 255, 136, 0.1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            animation: float-icon 3s ease-in-out infinite;
+        }
+
+        @keyframes float-icon {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* Contacto */
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-item h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            word-break: break-all;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 5%;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 5%;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .social-links {
+                display: none;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 4rem 5%;
+            }
+        }
+
+        /* CV Page */
+        .cv-page {
+            display: none;
+            min-height: 100vh;
+            padding: 8rem 5% 4rem;
+        }
+
+        .cv-page.active {
+            display: block;
+        }
+
+        .cv-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cv-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cv-header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: var(--gradient-glow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cv-header .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        .cv-section {
+            margin-bottom: 3rem;
+        }
+
+        .cv-section h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .cv-section h2::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), transparent);
+        }
+
+        .cv-item {
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--primary);
+        }
+
+        .cv-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cv-item .date {
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cv-item p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .cv-item ul {
+            margin-top: 0.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .cv-item ul li {
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            gap: 1rem;
+        }
+
+        .download-cv-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: var(--gradient-glow);
+            color: var(--bg-dark);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .download-cv-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+    </style>
 </head>
+
 <body>
-    <div class="container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="profile">
-                <div class="avatar">
-                    <img src="assets/css/1763408491167.jpg" alt="Juan Felipe Mena Vega">
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <nav>
+        <div class="logo">JF</div>
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-link">Inicio</a></li>
+            <li><a href="#about" class="nav-link">Sobre mí</a></li>
+            <li><a href="#projects" class="nav-link">Proyectos</a></li>
+            <li><a href="#services" class="nav-link">Servicios</a></li>
+            <li><a href="#" class="nav-link" onclick="showCV(event)">CV</a></li>
+            <li><a href="#contact" class="nav-link">Contacto</a></li>
+        </ul>
+        <div class="social-links">
+            <a href="https://github.com/juanfeemv" target="_blank" title="GitHub">
+                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                </svg>
+            </a>
+            <a href="https://linkedin.com/in/juan-felipe-mena-717362395/" target="_blank" title="LinkedIn">
+                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <div id="main-page">
+        <section class="hero" id="home">
+            <div class="hero-bg" id="particles"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Hola, soy <span class="gradient-text"> Juanfe </span>
+                </h1>
+                <p class="hero-subtitle typing-effect">Desarrollador Full Stack</p>
+                </p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 1.1rem;">
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">Ver Proyectos</a>
+                    <a href="#contact" class="btn btn-secondary">Contactar</a>
                 </div>
-                <h1>Juan Felipe Mena Vega</h1>
-                <p class="subtitle">Desarrollador Web | Azure Fundamentals</p>
-                <p class="birth-date">10/11/2005</p>
             </div>
+        </section>
 
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="#sobre-mi" class="active"><i class="fas fa-user"></i> Sobre mí</a></li>
-                    <li><a href="#educacion"><i class="fas fa-graduation-cap"></i> Educación</a></li>
-                    <li><a href="#experiencia"><i class="fas fa-briefcase"></i> Experiencia</a></li>
-                    <li><a href="#habilidades"><i class="fas fa-code"></i> Habilidades</a></li>
-                    <li><a href="#idiomas"><i class="fas fa-language"></i> Idiomas</a></li>
-                    <li><a href="#certificaciones"><i class="fas fa-certificate"></i> Certificaciones</a></li>
-                </ul>
-            </nav>
-
-            <div class="contact-info">
-                <h3>Contacto</h3>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <a href="tel:+34696136580">696 13 65 80</a>
+        <section id="about">
+            <h2 class="section-title">Sobre mí</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Desarrollador Analítico y Proactivo</h3>
+                    <p>
+                        Soy Estudiante de Desarrollo de Aplicaciones Web.
+                        Me destaco por mi capacidad para analizar, detectar y documentar errores, ofreciendo
+                        siempre soluciones técnicas eficientes.
+                    </p>
+                    <p>
+                        Busco contribuir a proyectos innovadores aplicando mi pensamiento lógico y mis habilidades
+                        técnicas en entornos Full Stack, desde el diseño Frontend hasta la lógica de Backend y Bases de
+                        Datos.
+                    </p>
+                    <div class="cta-buttons" style="justify-content: flex-start; margin-top: 2rem;">
+                        <a href="#" onclick="showCV(event)" class="btn btn-primary">Ver mi CV</a>
+                    </div>
                 </div>
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:menavegajuanfe@gmail.com">menavegajuanfe@gmail.com</a>
-                </div>
-                
-                <div class="social-icons">
-                    <a href="https://www.linkedin.com/in/juan-felipe-mena-717362395/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/juanfeemv" target="_blank"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <section id="sobre-mi">
-                <h2>Sobre mí</h2>
-                <div class="objective">
-                    <p class="intro">Estudiante de Desarrollo de Aplicaciones Web con certificación en Azure (AZ-900) y experiencia práctica en QA. Busco aplicar mis habilidades en la resolución de problemas y desarrollo de software para contribuir a proyectos innovadores.</p>
-                </div>
-                <p>Estudiante apasionado por la tecnología y el desarrollo de aplicaciones web. Actualmente cursando el Ciclo Formativo de Grado Superior en Desarrollo de Aplicaciones Web en U-tad. Con experiencia en el sector de la hostelería y prácticas en testing de aplicaciones, busco seguir creciendo profesionalmente en el ámbito tecnológico.</p>
-            </section>
-
-            <section id="educacion">
-                <h2>Educación</h2>
-                <div class="education-item">
-                    <h3>Ciclo Formativo de Grado Superior en Desarrollo de Aplicaciones Web</h3>
-                    <p class="date">U-tad | Centro Universitario de Tecnología y Arte Digital</p>
-                    <p class="date">2024 - Presente</p>
-                </div>
-                <div class="education-item">
-                    <h3>Bachillerato Tecnológico</h3>
-                    <p class="date">I.E.S. Guadaiza</p>
-                    <p class="date">2022 - 2024</p>
-                </div>
-            </section>
-
-            <section id="experiencia">
-                <h2>Experiencia Laboral</h2>
-                <div class="experience-item">
-                    <h3>QA Tester - BildyApp</h3>
-                    <p class="date">Prácticas (2025)</p>
-                    <p>Encargado de asegurar la calidad de la app mediante pruebas funcionales y no funcionales, con el fin de detectar, documentar y reportar errores antes de su salida al mercado.</p>
-                </div>
-                <div class="experience-item">
-                    <h3>Food Runner - La Sala Banús</h3>
-                    <p class="date">Restaurante en Puerto Banús, Marbella | 2024</p>
-                    <p>Coordinación activa entre el equipo de cocina y el personal de servicio para garantizar la precisión y entrega puntual de los pedidos, gestionando la comunicación bajo alta presión.</p>
-                </div>
-            </section>
-
-            <section id="habilidades">
-                <h2>Habilidades Técnicas</h2>
                 <div class="skills-grid">
-                    <div class="skill-category">
-                        <h4><i class="fas fa-code"></i> Lenguajes</h4>
-                        <ul>
-                            <li>HTML</li>
-                            <li>CSS</li>
-                            <li>JavaScript</li>
-                            <li>PHP</li>
-                            <li>Java</li>
-                            <li>SQL (MySQL y MongoDB)</li>
-							<li>PL/SQL (Oracle)</li>
-                        </ul>
+                    <div class="skill-item">
+                        <h4>💻 Frontend</h4>
+                        <p>HTML, CSS, JavaScript, React, Astro</p>
                     </div>
-                    <div class="skill-category">
-                        <h4><i class="fas fa-tools"></i> Herramientas</h4>
-                        <ul>
-                            <li>Visual Studio Code</li>
-                            <li>Git & GitHub</li>
-                            <li>Postman</li>
-                            <li>Jira</li>
-                            <li>Azure</li>
-                            <li>AWS</li>
-							<li>Laravel</li>
-							<li>React</li>
-                        </ul>
+                    <div class="skill-item">
+                        <h4>🛠 Backend</h4>
+                        <p>Java, PHP, C#, Python, Laravel</p>
                     </div>
-                    <div class="skill-category">
-                        <h4><i class="fas fa-lightbulb"></i> Competencias</h4>
-                        <ul>
-                            <li>Buena comunicación</li>
-                            <li>Resolución de problemas</li>
-                            <li>Trabajo bajo presión</li>
-                            <li>Análisis lógico</li>
-                            <li>Documentación de errores</li>
-                            <li>Proactividad y autonomía</li>
-                        </ul>
+                    <div class="skill-item">
+                        <h4>☁️ Cloud & Datos</h4>
+                        <p>Azure (AZ-900), AWS, SQL, MongoDB, PL/SQL</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>🚀 Herramientas</h4>
+                        <p>Git, Postman, Jira, VS Code, Joomla</p>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section id="idiomas">
-                <h2>Idiomas</h2>
-                <div class="languages">
-                    <div class="language-item">
-                        <h4>Castellano</h4>
-                        <p>Nativo</p>
+        <section id="projects">
+            <h2 class="section-title">Proyectos Destacables</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        🏆
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/juanfeemv/axio-tfg" class="btn btn-primary">Ver Detalles</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="language-item">
-                        <h4>Inglés</h4>
-                        <p>Nivel B2 (Medio-Alto)</p>
-                        <p style="font-size: 14px; color: #7f8c8d; margin-top: 5px;">Certificado por Cambridge English</p>
+                    <div class="project-content">
+                        <h3>Axio</h3>
+                        <p>Plataforma web colaborativa diseñada para auditar, revisar y mejorar
+                            productos digitales (webs, diseños o documentos). A diferencia de los validadores
+                            tradicionales utiliza IA generativa multimodal para analizar no solo la sintaxis del
+                            código, sino también el contexto semántico y la accesibilidad.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">IA</span>
+                            <span class="tech-tag">Node</span>
+                            <span class="tech-tag">HTML/CSS</span>
+                        </div>
                     </div>
                 </div>
-            </section>
 
-            <section id="certificaciones">
-                <h2>Certificaciones y Reconocimientos</h2>
-                <div class="certifications">
+                <div class="project-card">
+                    <div class="project-image">
+                        📱
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="btn btn-primary">Ver Detalles</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Aplicación Web sobre Contenido Multimedia</h3>
+                        <p>Aplicación web que contiene dos minijuegos, uno tipo QUIZ y otro el famoso juego de aplastar
+                            el topo
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        ☁️
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/juanfeemv/Proyecto_EatAndRest" class="btn btn-primary">Ver
+                                    Detalles</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Eat And Rest</h3>
+                        <p>Este es un proyecto en el cual utilizo una API sobre restaurantes y alojamientos de Murcia,
+                            el usuario puede ver su información personalizada en cada uno y filtrarlos por preferencias.
+                            La reserva todavía no está finalizada.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">API</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">HTML/CSS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        ☁️
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/juanfeemv/ProyectoJava" class="btn btn-primary">Ver
+                                    Detalles</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Restaurante en Java</h3>
+                        <p>Aplicación final de la asignatura de Programación del primer año del ciclo DAWE, diseñada
+                            para gestionar y administrar un restaurante. Permite supervisar inventario, gestionar
+                            pedidos y mantener el control de los elementos esenciales del negocio.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">Swing</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        ☁️
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/stars/juanfeemv/lists/raspberry-pi"
+                                    class="btn btn-primary">Ver Detalles</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Instalaciones en Raspberry Pi</h3>
+                        <p>En estos repositorios hago pequeños tutoriales sobre las cosas que voy instalando y agregando
+                            en mi Raspberry Pi</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Raspberry Pi</span>
+                            <span class="tech-tag">Cibersecurity</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        ☁️
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/juanfeemv/Contabilidad_JAVA" class="btn btn-primary">Ver
+                                    Detalles</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Contabilidad en Java</h3>
+                        <p>Aplicación de contabilidad en Java para llevar un registro sencillo de ingresos y gastos.
+                            Permite añadir movimientos, verlos en una tabla, consultar detalles y modificar importes de
+                            manera fácil. Ideal para gestionar tu saldo de forma rápida y clara, sin complicaciones.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">Swing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="services">
+            <h2 class="section-title">Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="service-icon">⚡</span>
+                    <h3>Desarrollo Web</h3>
+                    <p>Creación de sitios y aplicaciones web utilizando tecnologías modernas como React y Astro,
+                        enfocadas en rendimiento.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🐛</span>
+                    <h3>QA Testing</h3>
+                    <p>Detección, documentación y reporte de errores. Pruebas funcionales y no funcionales para asegurar
+                        la calidad del software.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🚀</span>
+                    <h3>Soluciones Backend</h3>
+                    <p>Desarrollo de lógica de servidor robusta y gestión de bases de datos SQL y NoSQL escalables.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">Contacto</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i>📧</i>
+                        <h4>Email</h4>
+                        <a href="mailto:contacto.menavegajuanfe@gmail.com">contacto.menavegajuanfe@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i>💼</i>
+                        <h4>LinkedIn</h4>
+                        <a href="https://linkedin.com/in/juan-felipe-mena-717362395/"
+                            target="_blank">linkedin.com/in/juan-felipe-mena-717362395/</a>
+                    </div>
+                    <div class="contact-item">
+                        <i>💻</i>
+                        <h4>GitHub</h4>
+                        <a href="https://github.com/juanfeemv" target="_blank">github.com/juanfeemv</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="cv-page" class="cv-page">
+        <a href="#" class="back-btn" onclick="goHome(event)">← Volver al portfolio</a>
+        <div class="cv-container">
+            <div class="cv-header">
+                <h1>Juan Felipe Mena</h1>
+                <p class="subtitle">Desarrollador Full Stack</p>
+                <p class="subtitle">Comunidad de Madrid · contacto.menavegajuanfe@gmail.com</p>
+            </div>
+
+            <div class="cv-section">
+                <h2>Perfil</h2>
+                <p>Estudiante de Desarrollo de Aplicaciones Web con certificación en Azure (AZ-900). Destaco por mi
+                    capacidad para analizar, detectar y documentar errores, así como por ofrecer soluciones estables y
+                    escalables. Busco contribuir a proyectos innovadores aplicando mis habilidades técnicas, pensamiento
+                    lógico y proactividad.</p>
+            </div>
+
+            <div class="cv-section">
+                <h2>Experiencia</h2>
+                <div class="cv-item">
+                    <h3>QA Tester</h3>
+                    <p class="date">BildyApp - Prácticas (2025)</p>
+                    <p>Encargado de asegurar la calidad de la app mediante pruebas funcionales y no funcionales.</p>
                     <ul>
-                        <li><strong>Microsoft Certified: Azure Fundamentals (AZ-900)</strong> – Microsoft, 2025</li>
-                        <li><strong>IA Workflows</strong> – Big School, 2025</li>
-                        <li><strong>Cloud Computing</strong> – Google, 2025</li>
-                        <li><strong>2º lugar – Concurso interno de programación "ProgramaMe"</strong>
-                        <span style="font-size: 14px; color: #555;">Competencia donde se evaluaron habilidades en lógica, resolución de problemas y desarrollo en equipo.</span></li>
+                        <li>Detección, documentación y reporte de errores antes de la salida al mercado.</li>
                     </ul>
                 </div>
-            </section>
-        </main>
+                <div class="cv-item">
+                    <h3>Food Runner</h3>
+                    <p class="date">La Sala Banús (2024)</p>
+                    <ul>
+                        <li>Garantizar la precisión y entrega puntual de pedidos bajo alta presión.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cv-section">
+                <h2>Educación</h2>
+                <div class="cv-item">
+                    <h3>CFGS Desarrollo de Aplicaciones Web</h3>
+                    <p class="date">U-tad | 2024 - Presente</p>
+                </div>
+                <div class="cv-item">
+                    <h3>Bachillerato Tecnológico</h3>
+                    <p class="date">I.E.S. Guadaiza | 2022 - 2024</p>
+                </div>
+            </div>
+
+            <div class="cv-section">
+                <h2>Certificaciones & Logros</h2>
+                <div class="cv-item">
+                    <ul>
+                        <li><strong>Microsoft Certified:</strong> Azure Fundamentals (AZ-900) - 2025</li>
+                        <li><strong>Google:</strong> Cloud Computing Foundations - 2025</li>
+                        <li><strong>C# para principiantes:</strong> Open Webinars - 2025</li>
+                        <li><strong>Python:</strong> Santander Open Academy - 2025</li>
+                        <li><strong>2º Lugar:</strong> Concurso "ProgramaMe" Java, U-Tad - 2024</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cv-section">
+                <h2>Skills</h2>
+                <div class="cv-item">
+                    <ul>
+                        <li><strong>Frontend:</strong> HTML, CSS, JavaScript, React, Astro.</li>
+                        <li><strong>Backend:</strong> Java, PHP, C#, Python, Laravel.</li>
+                        <li><strong>Bases de Datos:</strong> SQL (MySQL), MongoDB, PL/SQL.</li>
+                        <li><strong>Herramientas:</strong> Git, GitHub, Postman, Jira, Azure, AWS,.</li>
+                        <li><strong>Idiomas:</strong> Castellano (Nativo), Inglés (B2 - Cambridge).</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="cv-section">
+                <h2>Idiomas</h2>
+                <div class="cv-item">
+                    <ul>
+                        <li><strong>Inglés:</strong> B2, Certificado por Cambridge.</li>
+                        <li><strong>Español:</strong> Nativo.</li>
+                    </ul>
+                </div>
+            </div>
+            <a href="CV_JuanFelipe_MenaVega.pdf" class="download-cv-btn" download="CV_JuanFelipe_MenaVega.pdf">
+                Descargar CV (PDF)
+            </a>
+        </div>
     </div>
 
     <script>
-        // Smooth scroll para los enlaces de navegación
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    
-                    // Update active link
-                    document.querySelectorAll('.nav-menu a').forEach(link => {
-                        link.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                }
-            });
+        // 1. GENERACIÓN DE PARTÍCULAS
+        document.addEventListener('DOMContentLoaded', () => {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+
+                // Posición aleatoria
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+
+                // Retraso y duración aleatoria
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+
+                particlesContainer.appendChild(particle);
+            }
         });
 
-        // Cambiar link activo al hacer scroll
+        // 3. NAVEGACIÓN ENTRE PÁGINAS (HOME <-> CV)
+        const mainPage = document.getElementById('main-page');
+        const cvPage = document.getElementById('cv-page');
+
+        window.showCV = function (event) {
+            event.preventDefault();
+            mainPage.style.display = 'none';
+            cvPage.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.goHome = function (event) {
+            event.preventDefault();
+            cvPage.classList.remove('active');
+            mainPage.style.display = 'block';
+            window.location.hash = '#home';
+        }
+
+        // 4. RESALTAR ENLACES ACTIVOS AL SCROLL
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
         window.addEventListener('scroll', () => {
             let current = '';
-            document.querySelectorAll('section').forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (scrollY >= sectionTop - 100) {
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                if (pageYOffset >= sectionTop) {
                     current = section.getAttribute('id');
                 }
             });
 
-            document.querySelectorAll('.nav-menu a').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === current) {
-                    link.classList.add('active');
+            navLinks.forEach(link => {
+                link.classList.remove('active-link');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active-link');
                 }
             });
         });
     </script>
 </body>
+
 </html>
